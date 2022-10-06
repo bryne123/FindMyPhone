@@ -23,6 +23,8 @@ body {
   padding: 50px;
   border-radius: 5px;
   box-shadow: 0 0 10px 3px;
+  position: relative;
+  left: -150px;
 }
 .btn-grid {
   display: grid;
@@ -52,4 +54,8 @@ h1 {
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   align-items: center;
+}
+#music {
+  position: relative;
+  top: -200px;
 }
