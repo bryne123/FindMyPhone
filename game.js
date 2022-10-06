@@ -11,14 +11,14 @@ function startGame() {
   showTextNode(1);
 }
 
-// Function to hide the
+// Function to change text
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
   textElement.innerText = textNode.text;
   while (optionButtonsElement.firstChild) {
     optionButtonsElement.removeChild(optionButtonsElement.firstChild);
   }
-
+  // Function to change Button
   textNode.options.forEach((option) => {
     if (showOption(option)) {
       const button = document.createElement("button");
@@ -42,7 +42,7 @@ function selectOption(option) {
   state = Object.assign(state, option.setState);
   showTextNode(nextTextNodeId);
 }
-
+// text paths
 const textNodes = [
   {
     id: 1,
@@ -50,6 +50,8 @@ const textNodes = [
     text: "You are in the kitchen, there is an Ikea dining table with a hammer on it.",
     options: [
       { text: "Ignore hammer", nextText: 2 },
+
+      //picks up hammer
       {
         text: "Pick up hammer",
         setState: { hammer: true },
@@ -59,7 +61,7 @@ const textNodes = [
   },
   {
     id: 2,
-    text: "You are in the kitchen. To the left of the kitchen is the lounge, to the right is the bedroom",
+    text: "You are in the kitchen. To the left of the kitchen is the lounge, to the right is the bathroom",
     options: [
       {
         text: "Go left",
@@ -68,7 +70,7 @@ const textNodes = [
 
       {
         text: "Go right",
-        nextText: 4,
+        nextText: 10,
       },
     ],
   },
@@ -80,6 +82,7 @@ const textNodes = [
         text: "Sit on Sofa",
         nextText: 4,
       },
+      // presents option if player has hammer
       {
         text: "Kill spider",
         requiredState: (currentState) => currentState.hammer,
@@ -123,7 +126,7 @@ const textNodes = [
   },
   {
     id: 7,
-    text: "You are in the Lounge, there is a large comfy sofa, to the left is the bathroom, to the right is the kitchen.",
+    text: "You are in the Lounge, there is a large comfy sofa, to the left is the bedroom, to the right is the kitchen.",
     options: [
       {
         text: "Sit on Sofa",
@@ -131,57 +134,81 @@ const textNodes = [
       },
       {
         text: "left",
-        nextText: 2,
+        nextText: 9,
       },
       {
         text: "right",
 
-        nextText: 2,
-      },
-      {
-        text: "Throw the hammer at it",
-        requiredState: (currentState) => currentState.hammer,
-        nextText: 11,
+        nextText: 12,
       },
     ],
   },
   {
     id: 8,
-    text: "You found the phone under the cushion!",
+    text: "Congratulations You found the phone under the cushion!",
     options: [
       {
-        text: "Play again",
+        text: "You Won! Play again",
         nextText: -1,
       },
     ],
   },
   {
     id: 9,
-    text: "You foolishly thought this monster could be slain with a single sword.",
+    text: "You are in the bedroom, there is a credit card on the bed",
     options: [
       {
-        text: "Restart",
-        nextText: -1,
+        text: "Buy new phone",
+        nextText: 11,
+      },
+      {
+        text: "Go back",
+        nextText: 7,
       },
     ],
   },
   {
     id: 10,
-    text: "The monster laughed as you hid behind your shield and ate you.",
+    text: "You are in the bathroom, There's nothing here.",
     options: [
       {
-        text: "Restart",
-        nextText: -1,
+        text: "Go back",
+        nextText: 2,
       },
     ],
   },
   {
     id: 11,
-    text: "You threw your hammer at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.",
+    text: "You bought a new phone! not quite what we wanted but good enough!",
     options: [
       {
         text: "Congratulations. Play Again.",
         nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 12,
+    text: "You are in the kitchen. To the left of the kitchen is the lounge, to the right is the bathroom",
+    options: [
+      {
+        text: "Go left",
+        nextText: 7,
+      },
+
+      {
+        text: "Go right",
+        nextText: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    text: "You are in the bathroom, There's nothing here.",
+    options: [
+      {
+        text: "Go back",
+        nextText: 12,
       },
     ],
   },
